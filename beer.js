@@ -17,7 +17,7 @@ function bind(){
         var search = "/search?q=";
         var fullUrl = base + search + bts + type + key; //construct a custom url based on the user's input
         var req = new XMLHttpRequest(); //create the request with the new url
-        req.open("GET", fullUrl, true);
+        req.open("POST", fullUrl, true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.send(null);
         req.addEventListener('load', function(){
