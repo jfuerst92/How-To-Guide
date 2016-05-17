@@ -16,13 +16,24 @@ function bind(){
         var key = "&key=d9e3c76540e2267dd4f9e09ede879957";
         var search = "/search?q=";
         var fullUrl = base + search + bts + type + key; //construct a custom url based on the user's input
+        $.get( fullUrl, function( data ) {
+            alert( "Data Loaded: " + data );
+        });
+        
+       
+       
+       
+       
+       
+       
+        /*
         var req = new XMLHttpRequest(); //create the request with the new url
         req.open("GET", fullUrl, true);
         req.setRequestHeader("Access-Control-Allow-Origin", "*");
         req.setRequestHeader('Access-Control-Allow-Methods', 'GET');
         req.send(null);
-        req.addEventListener('load', function(){
-             var response = JSON.parse(req.responseText); //parse the response text
+       req.addEventListener('load', function(){
+            var response = JSON.parse(req.responseText); //parse the response text
             //console.log(response);
             document.getElementById("sb").textContent = response.data[0].name;          //output the relevant data
             document.getElementById("id").textContent = response.data[0].id;
