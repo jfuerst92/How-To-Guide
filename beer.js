@@ -21,21 +21,14 @@ function bind(){
         req.setRequestHeader('Content-Type', 'application/json');
         req.send(null);
         req.addEventListener('load', function(){
-            if (req.status < 400) //make sure response status is ok
-            {
-                var response = JSON.parse(req.responseText); //parse the response text
-                //console.log(response);
-                document.getElementById("sb").textContent = response.data[0].name;          //output the relevant data
-                document.getElementById("id").textContent = response.data[0].id;
-                document.getElementById("try1").textContent = response.data[1].name;
-                document.getElementById("try2").textContent = response.data[2].name;
-                //more can be added, these are the minimum
-
-            }
-            else
-            {
-                console.log("Error: "+request.statusText); //display an error when there isn't a good response
-            }
+             var response = JSON.parse(req.responseText); //parse the response text
+            //console.log(response);
+            document.getElementById("sb").textContent = response.data[0].name;          //output the relevant data
+            document.getElementById("id").textContent = response.data[0].id;
+            document.getElementById("try1").textContent = response.data[1].name;
+            document.getElementById("try2").textContent = response.data[2].name;
+            //more can be added, these are the minimum
+             event.preventDefault();
         });
         
         //console.log(JSON.parse(req.responseText));
