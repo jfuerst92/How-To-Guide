@@ -3,7 +3,7 @@
  * by: Joseph Fuerst
  * 5/8/2016
  ******************/
-var base = "https://api.brewerydb.com/v2"
+var base = "http://api.brewerydb.com/v2"
 
 document.addEventListener('DOMContentLoaded', bind); //DOM must load first before binding buttons.
 
