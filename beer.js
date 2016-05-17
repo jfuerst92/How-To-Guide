@@ -3,7 +3,17 @@
  * by: Joseph Fuerst
  * 5/8/2016
  ******************/
-var base = "http://api.brewerydb.com/v2"
+
+$(document).ready(function(){
+    $("button").click(function(){
+        $.get("http://api.brewerydb.com/v2/search?q=Two_Hearted_Ale&type=beer&key=d9e3c76540e2267dd4f9e09ede879957&format=xml", function(data, status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+});
+
+
+/*var base = "http://api.brewerydb.com/v2"
 
 document.addEventListener('DOMContentLoaded', bind); //DOM must load first before binding buttons.
 
