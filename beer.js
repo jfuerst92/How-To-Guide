@@ -19,7 +19,7 @@ function bind(){
         var req = new XMLHttpRequest(); //create the request with the new url
         req.open("GET", fullUrl, true);
         //req.setRequestHeader('Content-Type', 'application/json');
-        //req.send(null);
+        req.send(null);
         req.addEventListener('load', function(){
             if (req.status < 400) //make sure response status is ok
             {
@@ -37,7 +37,7 @@ function bind(){
                 console.log("Error: "+request.statusText); //display an error when there isn't a good response
             }
         });
-        req.send(null);
+        
         //console.log(JSON.parse(req.responseText));
         event.preventDefault();
     });
