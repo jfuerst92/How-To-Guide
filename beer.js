@@ -19,6 +19,7 @@ function bind(){
         var req = new XMLHttpRequest(); //create the request with the new url
         req.open("GET", fullUrl, true);
         req.setRequestHeader("Access-Control-Allow-Origin", "*");
+        req.setRequestHeader('Access-Control-Allow-Methods', 'GET');
         req.send(null);
         req.addEventListener('load', function(){
              var response = JSON.parse(req.responseText); //parse the response text
