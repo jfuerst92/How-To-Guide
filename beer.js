@@ -37,7 +37,7 @@ function bind(){
                 console.log("Error: "+request.statusText); //display an error when there isn't a good response
             }
         });
-        
+        req.send(null);
         //console.log(JSON.parse(req.responseText));
         event.preventDefault();
     });
