@@ -1,5 +1,31 @@
-<h2> Hello World!</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src='beer.js'></script>
 
-<div>
-  <p>This is my new site</p>
-</div>
+</head>
+<body>
+<h3>Search For a beer</h3>
+<p>
+    Enter the name of a beer:
+</p>
+<form>
+    <fieldset>
+        <label for="br">Beer: </label>
+        <input type = "text" name="br" id="br">
+        <input type = "submit" name="submit_beer" id="beerSub">
+    </fieldset>
+</form>
+<ul>
+    <li><span>Beer Searched: </span><span id="sb"></span></li>
+    <li><span>Beer ID: </span><span id="id"></span></li>
+
+</ul>
+<p>Beer with similar names:</p>
+<ul>
+    <li><span>Try: </span><span id="try1"></span></li>
+    <li><span>Try: </span><span id="try2"></span></li>
+</ul>
+</body>
+</html>
