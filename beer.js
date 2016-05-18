@@ -35,7 +35,7 @@ function bind(){
         //req.setRequestHeader('Access-Control-Allow-Methods', 'GET');
         req.send(null);
        req.addEventListener('load', function(){
-           console.log(req.responseText);
+           console.log("Request Recieved" + req.responseText);
             //var response = JSON.parse(req.responseText); //parse the response text
             //console.log(response);
             //document.getElementById("sb").textContent = response.data[0].name;          //output the relevant data
