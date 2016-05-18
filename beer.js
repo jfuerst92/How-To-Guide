@@ -24,7 +24,7 @@ function bind(){
     var el = document.getElementById('beerSub');
     el.addEventListener('click', function(event){
         var beerName = document.getElementById('br').value;
-        var bts = beerName.split(' ').join('%5f');
+        var bts = beerName.split(' ').join('_');
         var type = "%26type%3dbeer";
         var key = "%26key%3dd9e3c76540e2267dd4f9e09ede879957";
         var route = "?route=%2fv2%2fsearch%3fq%3d";
