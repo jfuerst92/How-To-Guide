@@ -4,6 +4,8 @@
  * 5/8/2016
  ******************/
 
+
+/******************************************
 $(document).ready(function(){
     $("button").click(function(){
         $.get("http://api.brewerydb.com/v2/search?q=Two_Hearted_Ale&type=beer&key=d9e3c76540e2267dd4f9e09ede879957&format=xml", function(data, status){
@@ -11,9 +13,10 @@ $(document).ready(function(){
         });
     });
 });
+********************************************/
 
-
-/*var base = "http://api.brewerydb.com/v2"
+//var base = "http://api.brewerydb.com/v2"
+var base = "http://jfuerst92.github.io/How-To-Guide/proxy.php"
 
 document.addEventListener('DOMContentLoaded', bind); //DOM must load first before binding buttons.
 
@@ -24,23 +27,12 @@ function bind(){
         var bts = beerName.split(' ').join('_');
         var type = "&type=beer";
         var key = "&key=d9e3c76540e2267dd4f9e09ede879957";
-        var search = "/search?q=";
-        var fullUrl = base + search + bts + type + key; //construct a custom url based on the user's input
-        $.get( fullUrl, function( data ) {
-            alert( "Data Loaded: " + data );
-        });
-        
-       
-       
-       
-       
-       
-       
-        /*
+        var route = "?route=/v2/search?q=";
+        var fullUrl = base + route + bts + type + key; //construct a custom url based on the user's input
         var req = new XMLHttpRequest(); //create the request with the new url
         req.open("GET", fullUrl, true);
-        req.setRequestHeader("Access-Control-Allow-Origin", "*");
-        req.setRequestHeader('Access-Control-Allow-Methods', 'GET');
+        //req.setRequestHeader("Access-Control-Allow-Origin", "*");
+        //req.setRequestHeader('Access-Control-Allow-Methods', 'GET');
         req.send(null);
        req.addEventListener('load', function(){
             var response = JSON.parse(req.responseText); //parse the response text
