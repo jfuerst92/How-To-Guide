@@ -35,12 +35,13 @@ function bind(){
         //req.setRequestHeader('Access-Control-Allow-Methods', 'GET');
         req.send(null);
        req.addEventListener('load', function(){
-            var response = JSON.parse(req.responseText); //parse the response text
+           console.log(req.responseText);
+            //var response = JSON.parse(req.responseText); //parse the response text
             //console.log(response);
-            document.getElementById("sb").textContent = response.data[0].name;          //output the relevant data
-            document.getElementById("id").textContent = response.data[0].id;
-            document.getElementById("try1").textContent = response.data[1].name;
-            document.getElementById("try2").textContent = response.data[2].name;
+            //document.getElementById("sb").textContent = response.data[0].name;          //output the relevant data
+          //  document.getElementById("id").textContent = response.data[0].id;
+           // document.getElementById("try1").textContent = response.data[1].name;
+          //  document.getElementById("try2").textContent = response.data[2].name;
             //more can be added, these are the minimum
              event.preventDefault();
         });
