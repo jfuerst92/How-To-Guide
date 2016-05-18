@@ -673,3 +673,5 @@ class AjaxProxy
  */
 $proxy = new AjaxProxy('http://api.brewerydb.com');
 $proxy->execute();
+
+?>
