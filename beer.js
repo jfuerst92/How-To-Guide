@@ -48,7 +48,7 @@ function bind(){
         //console.log(JSON.parse(req.responseText));
         event.preventDefault();
     });
-
+}
     /*var el2 = document.getElementById('zipSub')
      el2.addEventListener('click', function(event){
      var text = {zipcode:null, cc:null}
