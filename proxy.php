@@ -671,5 +671,5 @@ class AjaxProxy
  * Here's the actual script part. Comment it out or remove it if you simply want
  *  the class' functionality
  */
-$proxy = new AjaxProxy('http://login.example.com/');
+$proxy = new AjaxProxy('http://api.brewerydb.com');
 $proxy->execute();
