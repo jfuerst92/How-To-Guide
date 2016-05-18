@@ -30,7 +30,7 @@ function bind(){
         var bts = beerName.split(' ').join('_');
         var type = "&type=beer";
         var key = "&key=d9e3c76540e2267dd4f9e09ede879957";
-        var search = "/search?=;
+        var search = "/search?=";
         var fullUrl = base + search + bts + type + key; //construct a custom url based on the user's input
         var req = new XMLHttpRequest(); //create the request with the new url
         req.open("GET", fullUrl, true);
