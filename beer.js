@@ -49,7 +49,7 @@ function bind(){
                 var city = response2.data.breweries[0].locality;
                 var state = response2.data.breweries[0].region;
                 var zip = response2.data.breweries[0].postalCode;
-                fullAddr = steet + ', ' + city + ', ' + state + ' ' + zipcode;
+                fullAddr = street + ', ' + city + ', ' + state + ' ' + zipcode;
                 document.getElementById("loc").textContent = fullAddr;
             
         });
