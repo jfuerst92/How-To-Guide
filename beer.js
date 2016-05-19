@@ -51,6 +51,7 @@ function bind(){
                 var zip = response2.data.breweries[0].locations[0].postalCode;
                 var fullAddr = street + ', ' + city + ', ' + state + ' ' + zip;
                 document.getElementById("loc").textContent = fullAddr;
+                document.getElementById("brewImg").src = response2.data.breweries[0].images.medium; 
             
         });
             
