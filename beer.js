@@ -20,8 +20,6 @@ function bind(){
         var type = "&type=beer";
         var key = "&key=d9e3c76540e2267dd4f9e09ede879957";
         var search = "/search?q=";
-        var beer = /beer/;
-        var brew = "?withBreweries=y"
         var fullUrl = base + search + bts + type + key; //construct a custom url based on the user's input
         var req = new XMLHttpRequest(); //create the request with the new url
         req.open("GET", fullUrl, true);
@@ -33,9 +31,11 @@ function bind(){
             var response = JSON.parse(req.responseText); //parse the response text
             document.getElementById("sb").textContent = response.data[0].name;          //output the relevant data
             document.getElementById("id").textContent = response.data[0].id;
-            var id = response.data[0].id;
             document.getElementById("try1").textContent = response.data[1].name;
             document.getElementById("try2").textContent = response.data[2].name;
+            var beer = /beer/;
+            var brew = "?withBreweries=y"
+            var id = response.data[0].id;
             var newUrl = base + beer + id + brew + key
             var req2 = new XMLHttpRequest();
             req2.open("GET", newUrl, true);
