@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Introduction</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<script src='beer.js'></script>
+</head>
+<body>
+<p id="ban">
+BreweryDB API How-To
+</p>
+
+<ul id="nav">
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/index.html">Home</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/SetUp.html">Set Up</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/API.html">API Explanation</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/key.html">Getting Your API key</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/requests.html">Making Requests</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/CORS.html">CORS Workaround</a></li>
+    <li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/reqInfo.html">Using Returned Info</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/final.html">Final Test</a></li>
+</ul>
+
+	<div class="head">
+		<h1 class="para">Making your first request</h1>
+		<p id="intro" class="para">
+			We’ll be making GET requests to get data from the database. That mean’s we’re going to pass 
+			information in the url. Here is an example:
+		</p>
+		
+	</div>
+	
+	<div class="col">
+		<h3 class="para">http://api.brewerydb.com/v2/search?q=Two_Hearted_Ale&type=beer&key=YOUR_API_KEY</h3>
+		<p class="para">
+			This url looks long and confusing, so we’ll break it down into easier to understand parts.
+
+		</p>
+		
+	</div>
+	<div class="col">
+		<h3 class="para">http://api.brewerydb.com/v2</h3>
+		<p class="para">
+			This is the base url. Every call you make will include this part. v2 stands for the new version 
+			that they put out, as there is an older outdated version still used by some. Use this to be 
+			future-proof. 
+		</p>
+		
+	</div>
+	<div class="col">
+		<h3 class="para">/search</h3>
+		<p class="para">
+			This is what we want to get. In this specific case, we want to do a search. But there are many 
+			others, such as /beer to get a list of all beers, /breweries to get a list of all breweries, or 
+			/brewery/:breweryId if you wanted to get a specific item. There are a lot of these, and we’ll go 
+			over some of the more common ones soon.
+		</p>		
+	</div>
+	
+	<div class="col">
+		<h3 class="para">?q=Two_Hearted_Ale&type=beer</h3>
+		<p class="para">
+			These are our queries. In this specific case it’s what we’re searching for. 
+			I am looking for a specific beer. I am searching for beers with names that match 
+			Two Hearted Ale, and  I am telling the database that beer is what Im looking for when 
+			I put type=beer. Each pair is seperated by an &.
+		</p>		
+	</div>
+	
+	<div class="col">
+		<h3 class="para">&key=YOUR_API_KEY</h3>
+		<p class="para">
+			Following the last ampersand will be something like this, 
+			but instead of YOUR_API_KEY you would write in the API key 
+			that was given to you in the email. That way they know who 
+			the request is coming from. It won’t work if you don’t have one. 
+
+		</p>	
+		<p class="para">
+			So now, do it with me! put in your api key, and copy and paste the url into your address bar in a browser. 
+			If you did it right, you’ll get something like this:
+			<img class="pic" src="JSONresponseMess.png" alt="Requesting an API key" style="width:1200px;height:800px;">
+		</p>
+	</div>
+	<div class="col">
+		
+		<p class="para">
+			Yikes! That’s a big chunk of data! If you find this representation of the data hard to swallow 
+			(and you should), then copy all of that garbage and  head over here - http://jsonviewer.stack.hu/. 
+			Paste it into the text area, and go over to the viewer, and you’ll see the data is all neatly tucked 
+			away in a JSON object and now in a format that you can actually begin to comprehend. It should look 
+			something like this: 
+		</p>	
+		
+			<img class="pic" src="JSONresponseOrdered.png" alt="Requesting an API key" style="width:1200px;height:800px;">
+		<p class="para">
+			As you move around and explore what’s in this, you’ll notice that it’s just a list of beers that have 
+			similar names to the one we searched. The first result is a perfect match, and you can see there are 
+			bunch of key:value pairs, such as "id":"Kk1Cyr","name":"Two Hearted Ale" and more, including a 
+			description, optimal drinking temperature, optimal glass, food pairings, brewery and much much more! 
+			Now we can get the data we need through these pairs, and display those results on our site, or use that 
+			info to make further requests! This tutorial isn’t going to dive into exactly what JSON is, since it’s 
+			out of the scope of what  you need to know to get things working, but if you want more information, 
+			head over to <a href="http://json.org/">JSON.org</a>. 
+
+		</p>
+	</div>
+	
+	<div class="col">
+		<h3 class="para">Making the request</h3>
+		<p class="para">
+			Now, in order to get this data in a useable form, were going to make an AJAX request. 
+			AJAX stands for asynchronous JavaScript and XML. So here we’re gonna need a bit of javascript. 
+			First, I’ll show you an example! Below is a form that will send an AJAX request. It uses the same
+			exact url that we broke down earlier, but now, it returns the search result data of the beer you enter 
+			and displays to you what the top result's name and id, along with the names of the 2nd and 3rd closest 
+			results. 
+
+		</p>		
+	</div>
+<div>	
+	<h3>Search For a beer</h3>
+		<p>
+			Enter the name of a beer:
+		</p>
+	<form method="post">
+		<fieldset>
+			<label for="br">Beer: </label>
+			<input type = "text" name="br" id="br">
+			<input type = "submit" name="submit_beer" id="beerSub">
+		</fieldset>
+	</form>
+	<ul>
+		<li><span>Beer Searched: </span><span id="sb"></span></li>
+		<li><span>Beer ID: </span><span id="id"></span></li>
+	</ul>
+	<p>Beer with similar names:</p>
+	<ul>
+		<li><span>Try: </span><span id="try1"></span></li>
+		<li><span>Try: </span><span id="try2"></span></li>
+	</ul>
+</div>
+	
+<div class="col">
+		<h3 class="para">Pretty cool, right?</h3>
+		<p class="para">
+			Now let's take a look at what the javascript is doing to make this happen. The first thing we want
+			to do is to make a couple variables that will hold the parts of the url that we're going to send.
+
+		</p>	
+		<pre class="prettyprint">
+			var baseUrl = "http://api.brewerydb.com/v2";
+			var search = "/search?q=";
+			var beerName = "Two Hearted Ale"
+			var type = "&type=beer";
+			var key = "&key=YOUR_API_KEY";
+			var fullUrl = baseUrl + search + beerName + type + key;
+		</pre>
+	</div>
+	
+	<div class="col">
+		
+		<p class="para">
+			The fullUrl variable now contains the entire url, just as we used earlier. (For the record, Bell's
+			Two Hearted Ale is my personal favorite, so that's my example beer.) You may be wondering why I went
+			through all that work to join the variables together to make a url, when I could have just put the 
+			whole text in the fullUrl variable to begin with. The reason for this is that you may want the user to
+			decide what is to be stored in the variable, rather than having it hard coded, so for instance, beerName
+			could be written like this:
+		</p>	
+		<pre class="prettyprint">
+			var beerName = document.getElementById('br').value;
+		</pre>
+		<p class="para">
+			Now, if you have a text entry field in your html document that has the id 'br', beerName will store that
+			variable when it is entered.
+		</p>
+		<p class="para">
+			But still, something is not quite right about this. You don't generally see spaces in your urls, do you?
+			So if the user types "Two Hearted Ale" in and tries to enter that, the url you try to send will look like this:
+		</p>
+		<p class="para">	
+			http://api.brewerydb.com/v2/search?q=Two Hearted Ale&type=beer&key=YOUR_API_KEY
+		</p>
+		<p class="para">	
+		 That simply won't do. In fact, the proper url needs underscores instead of spaces. 
+		So you're going to have to fix what the user enters, because it would be rude to expect
+		 them to know to use underscores when you are searching a beer with more than one word!
+		 So instead you can do something like this:
+		</p>
+		<pre class="prettyprint">
+			
+			var beerName = document.getElementById('br').value;
+			var bts = beerName.split(' ').join('_');
+			
+		</pre>
+		<p class="para">	
+			This will essentially replace the spaces with underscores. Now you can add that to the url, and it will 
+			actually work!
+		</p>
+		<pre class="prettyprint">
+			var fullUrl = baseUrl + search + bts + type + key;
+		</pre>
+		
+		<p class="para">	
+			The final variable that we need is here:
+		</p>
+		<pre class="prettyprint">
+			 var req = new XMLHttpRequest();
+		</pre>
+		<p class="para">	
+			This assigns a new JavaScript object that facilitates the sending of our AJAX request to the req variable.
+			Now we will work with this variable to send our stuff and get back what we want! Next we want to "open" a 
+			request. We can do that like so:
+		</p>
+		
+		<pre class="prettyprint">
+			 req.open("GET", fullUrl, true);
+		</pre>
+		<p class="para">	
+			This bit sends the request. It has three arguments. For the first we wrote "GET", indicating tthat this would
+			be a GET request. The second argument is the url that we have constructed, and the third argument is true, which
+			indicates that we want an asynchronous request. Since it's asynchronous, we need to add an event listener.
+		</p>
+		<pre class="prettyprint">
+		req.addEventListener('load', function(){
+			 var response = JSON.parse(req.responseText); //parse the response text
+			 console.log(response);
+			 document.getElementById("sb").textContent = response.data[0].name;        
+			 document.getElementById("id").textContent = response.data[0].id;
+			 document.getElementById("try1").textContent = response.data[1].name;
+			 document.getElementById("try2").textContent = response.data[2].name;           
+		 });
+		</pre>
+		<p class="para">	
+			This event listener waits for it to complete loading, so that all of the data is there, and only when it is, 
+			it executes the function. This function parses the response text and stores it in the variable response. And 
+			once it does that, you can do whatever you like with the data! The first thing I did here was to log the variable.
+			So if you entered a beer in the example earlier, then you can press F12 to open the console and view the data, just 
+			as you did earlier with the JSON viewer. Below the log statement, you can see how I got the info to output on this 
+			page. This page contains elements with the ids: "sb, "id", "try1" and "try 2". The first statement stored 
+			response.data[0].name in the textContent of that element. If you searched Two Hearted Ale, then the top result is, unsuprisingly,
+			Two Hearted Ale. response.data[0].id refers to the beer id that the database uses. This will be useful later. The next two refer
+			to the next two results in the search. Using this notation, you could access any part of any of the beers returned in the search.
+			And there are a lot, so that's pretty cool.
+		</p>
+		<p class="para">	
+			Now, remember that chrome add-on I had you install earlier? Now's the time to explain why that is necessary.
+		</p>
+	</div>
+	
+	<button type="button" class="btn">Next</button>
+
+</body>
+</html>

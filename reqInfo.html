@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CORS Workaround</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</head>
+<body>
+<p id="ban">
+BreweryDB API How-To
+</p>
+
+<ul id="nav">
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/index.html">Home</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/SetUp.html">Set Up</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/API.html">API Explanation</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/key.html">Getting Your API key</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/requests.html">Making Requests</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/CORS.html">CORS Workaround</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/reqInfo.html">Using Returned Info</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/final.html">Final Test</a></li>
+</ul>
+
+	<div class="head">
+		<h1 class="para">Doing Cool stuff with the API</h1>
+		<p id="intro" class="para">
+			So far we got a beer name and an ID. We can do better than that! If you noticed earlier, when we searched for
+			a beer, the results didn't include a brewery. But lets say we really want to know who makes our favorite beer,
+			and where their brewery is. This leads us to:
+
+		</p>
+		
+	</div>
+	
+	<div class="col">
+		<h3 class="para">Nested AJAX requests</h3>
+		<p class="para">
+			We need to make a new request if we want to find this brewery info. The beer search results page has no info on the
+			brewery. But we know <i>BreweryDB</i> has to have that info somewhere. This is where the id we got earlier is useful.
+			Using that id, we can get a more comprehensive data set of that particular beer. Now that we know the specific id of 
+			our beer, we can get results for that one specifically. Lets start to make our new url for that request. We still have
+			our old variables from the first call, but we're gonna make a few new ones.
+			
+
+		</p>
+		
+		<pre class="prettyprint">
+			var beer = /beer/;
+			var brew = "?withBreweries=y";
+			var id = response.data[0].id;
+			var newUrl = base + beer + id + brew + key;
+
+		</pre>
+		<p class="para">
+			Here we have added a few more variables. The beer variable replaces the search variable. We're not doing a search anymore,
+			were getting info for a specific beer, so /beer is how we indicate that. We have a new id variable. This will store the
+			id that we found earlier from the search. Notice how we're using the first response to fill in the data for our next request.
+			The brew variable indicates an optional addition that we can add. Normally the beer data returns without brewery info. But
+			here we have added withBreweries=y to ensure we get what we want. There are many more of these options for most of the calls
+			you can make, and they are all addressed in the full documentation. Finally, we have the newUrl, which puts these all together.
+			Now we can simply make a new request, right? But be careuful, because where you put the request is important.
+		</p>
+		
+		<h3 class="para">A Call Inside of a Call</h3>
+		<p class="para">
+			In our first request, we added an event listener to make sure we actually got the data before it started storing the info
+			in variables and outputting to our html document. Since one of our variables (the id variable) is made from the result of that 
+			call, our subsequent request must also wait until the first is finished loading. So let's take a big look at our Javascript code
+			up to this point.
+
+		</p>
+		
+		<pre class="prettyprint">
+			
+document.addEventListener('DOMContentLoaded', bind); //DOM must load first before binding buttons.
+
+function bind(){
+    var el = document.getElementById('beerSub');
+    el.addEventListener('click', function(event){
+		var base = "http://api.brewerydb.com/v2"
+        var beerName = document.getElementById('br').value;
+        var bts = beerName.split(' ').join('_');
+        var type = "&type=beer";
+        var key = "&key=d9e3c76540e2267dd4f9e09ede879957";
+        var search = "/search?q=";
+        var fullUrl = base + search + bts + type + key; //construct a custom url based on the user's input
+        var req = new XMLHttpRequest(); //create the request with the new url
+        req.open("GET", fullUrl, true);
+        
+        req.send(null);
+        req.addEventListener('load', function(){
+            var response = JSON.parse(req.responseText); //parse the response text
+            document.getElementById("sb").textContent = response.data[0].name;         
+            document.getElementById("id").textContent = response.data[0].id;
+            document.getElementById("try1").textContent = response.data[1].name;
+            document.getElementById("try2").textContent = response.data[2].name;
+            
+        });
+        event.preventDefault();
+    });
+}
+
+		</pre>
+		<p class="para">
+			Now, where to put the next request? As mentioned before, if we put it anywhere after the req.addEventListener function,
+			then it very well may execute before the first request is done loading. This is the nature of Asynchronous requests. While
+			that specific request loads, so too does the rest of the stuff below it. Only what is in the anonymous function below it
+			waits for it to load. So that is where we must put the new request. Our new request is going to look something like this:
+
+		</p>
+		<pre class="prettyprint">
+	    var beer = /beer/;
+            var brew = "?withBreweries=y"
+            var id = response.data[0].id;
+            var newUrl = base + beer + id + brew + key
+            var req2 = new XMLHttpRequest();
+            req2.open("GET", newUrl, true);
+            req2.send(null);
+            req2.addEventListener('load', function(){
+                var response2 = JSON.parse(req2.responseText); //parse the response tex
+                console.log(response2);
+                document.getElementById("brew").textContent = response2.data.breweries[0].name;
+           
+            
+        });
+		</pre>
+		<p class="para">
+			This should be pretty familiar, its just like the request we made the first time. We open the new request, send
+			our url, and add an event listener to wait until its loaded, then populate our stuff with data! Here's how the 
+			full file might look, with the requests properly nested:
+
+		</p>
+		<pre class="prettyprint">
+			
+document.addEventListener('DOMContentLoaded', bind); 
+
+function bind(){
+    var el = document.getElementById('beerSub');
+    el.addEventListener('click', function(event){
+		var base = "http://api.brewerydb.com/v2"
+        var beerName = document.getElementById('br').value;
+        var bts = beerName.split(' ').join('_');
+        var type = "&type=beer";
+        var key = "&key=d9e3c76540e2267dd4f9e09ede879957";
+        var search = "/search?q=";
+        var fullUrl = base + search + bts + type + key; 
+        var req = new XMLHttpRequest(); 
+        req.open("GET", fullUrl, true);
+        
+        req.send(null);
+        req.addEventListener('load', function(){
+            var response = JSON.parse(req.responseText); 
+            document.getElementById("sb").textContent = response.data[0].name;         
+            document.getElementById("id").textContent = response.data[0].id;
+            document.getElementById("try1").textContent = response.data[1].name;
+            document.getElementById("try2").textContent = response.data[2].name;
+		//We begin making the new request here, inside the first!
+            var beer = /beer/;  
+            var brew = "?withBreweries=y"
+            var id = response.data[0].id;
+            var newUrl = base + beer + id + brew + key
+            var req2 = new XMLHttpRequest();
+            req2.open("GET", newUrl, true);
+            req2.send(null);
+            req2.addEventListener('load', function(){
+                var response2 = JSON.parse(req2.responseText); 
+                console.log(response2);
+                document.getElementById("brew").textContent = response2.data.breweries[0].name; 
+	    });
+            
+        });
+        event.preventDefault();
+    });
+}
+		</pre>
+		<p class="para">
+			With this concept, you should be able to derive a ton of data from what you get. To finish things off, let's make
+			our search really cool! Lets add image of the beer label, the address of the brewery, and an image of the brewery label! 
+			You should be able to do all of this on your own now, but if not, we'll step through it on the final page!
+
+		</p>
+		
+	</div>
+	
+	
+	<button type="button" class="btn">Next</button>
+
+</body>
+</html>

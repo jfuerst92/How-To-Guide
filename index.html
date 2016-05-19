@@ -3,34 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <script src='beer.js'></script>
-    
-
+    <title>Introduction</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" type="image/png" href="favicon.ico">
 </head>
 <body>
-<h3>Search For a beer</h3>
-<p>
-    Enter the name of a beer:
+<p id="ban">
+BreweryDB API How-To
 </p>
-<form method="post">
-    <fieldset>
-        <label for="br">Beer: </label>
-        <input type = "text" name="br" id="br">
-        <input type = "submit" name="submit_beer" id="beerSub">
-    </fieldset>
-</form>
-<ul>
-    <li><span>Beer Searched: </span><span id="sb"></span></li>
-    <li><img id=beerImg><img></li>
-    <li><span>Beer ID: </span><span id="id"></span></li>
-    <li><span>Brewery: </span><span id="brew"></span></li>
-    <li><span>Location: </span><span id="loc"></span></li>
-    <li><img id=brewImg><img></li>
+<p class="para">
+	By: Joseph Fuerst
+</p>
+<div>
+	<ul id="nav">
+		<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/index.html">Home</a></li>
+		<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/SetUp.html">Set Up</a></li>
+		<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/API.html">API Explanation</a></li>
+		<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/key.html">Getting Your API key</a></li>
+		<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/requests.html">Making Requests</a></li>
+		<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/CORS.html">CORS Workaround</a></li>
+		<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/reqInfo.html">Using Returned Info</a></li>
+		<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/final.html">Final Test</a></li>
+	</ul>
+</div>
+	<div class="head">
+		<h1 class="para">Introduction </h1>
+		<p id="intro" class="para">
+			Hello and welcome to my BreweryDB API tutorial! If you’re here, 
+			you’re no doubt interested in getting information on how to use 
+			the BreweryDB API with your own apps and ideas! 
+		</p>
+	</div>
 
-</ul>
-<p>Beer with similar names:</p>
-<ul>
-    <li><span>Try: </span><span id="try1"></span></li>
-    <li><span>Try: </span><span id="try2"></span></li>
-</ul>
+	<div class="col">
+		<h3 class="para">Tutorial Plans</h3>
+		<p class="para">
+			This tutorial is going to first go through the basics of using 
+			an API, then we will dive into BreweryDB to figure out how to 
+			search for specific beers, get information about those beers, 
+			and use that information to get even more delicious information 
+			about our favorite beers!
+		</p>
+	</div>
+
+	<div class="col">
+		<h3 class="para">Full Documentation</h3>
+		<p class="para">
+			For the full Documentation, including an exhaustive amount of options 
+			for making requests, visit http://www.brewerydb.com/developers/docs
+	
+		</p>
+	</div>
+	
+	<div class="col">
+		<h3 class="para">Let's get started</h3>
+		<p class="para">
+			Now, the full documentation above is certainly thorough. 
+			But it is a lot of information to swallow at once, and 
+			could very easily leave someone confused especially 
+			because of the plethora of options available. So we’re 
+			gonna start small, we’ll learn specifically how to search 
+			for a specific beer by name, get some information from it, 
+			specifically but not exclusively the brewery that produces it, 
+			and from there we’ll get a bunch of other beers that that 
+			brewery makes! Consider it a sort of “Suggestion” based on what 
+			you input. 
+
+	
+		</p>
+	</div>
+	
+	<form method="get" action="">
+		<button type="submit" class="btn">Next</button>
+	</form>
+
 </body>
 </html>

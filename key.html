@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Introduction</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<p id="ban">
+BreweryDB API How-To
+</p>
+
+<ul id="nav">
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/index.html">Home</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/SetUp.html">Set Up</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/API.html">API Explanation</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/key.html">Getting Your API key</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/requests.html">Making Requests</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/CORS.html">CORS Workaround</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/reqInfo.html">Using Returned Info</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/final.html">Final Test</a></li>
+</ul>
+
+	<div class="head">
+		<h1 class="para">Getting your own API key</h1>
+		<p id="intro" class="para">
+			  In order to use the BreweryDB API (and most API’s actually), you will need an API key. 
+			  This is essentially a unique signature that identifies that your client is the one making 
+			  the request. It is included in every request for information you make to the database. 
+			  The purpose of this is to prevent heavy server load and abuse. Each key generally has a 
+			  limit on the amount of requests that it can make. The BreweryDB has a free key that is limited 
+			  to 400 read requests per 24 hours. So If you want to put this on a huge site with lots of traffic, 
+			  you may want to get the paid version, which gives your key unlimited read requests. But for now, 
+			  the free API key is ok.
+
+		</p>
+		
+	</div>
+	
+	<div class="col">
+		<h3 class="para"></h3>
+		<p class="para">
+			you’ll want to head over to the website at <a href="http://www.brewerydb.com/ ">BreweryDB.com</a> and sign up for an account. 
+			Once that’s done, go to developers, my Apps, and register a new app. In order to get an API key, 
+			they want you to give some info about whatever app you’re going to use their API for. 
+			<img class="pic" src="APIrequest.png" alt="Requesting an API key" style="width:1000px;height:800px;">
+			
+
+		</p>
+		<p class="para">
+			 It’s ok if you don’t actually have something yet. Just give what’s needed, and it should spit out 
+			 an API key to your email pretty quickly. Once you’ve got that, you’re ready to make some requests! 
+			 Well, you're <i>almost</i> ready. There's a pretty nasty issue when trying to get this information, 
+			 which we'll address after we go over making some basic requests.
+
+		</p>
+	</div>
+
+	
+	<button type="button" class="btn">Next</button>
+
+</body>
+</html>

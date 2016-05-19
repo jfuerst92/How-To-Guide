@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CORS Workaround</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<script src="beer2.js"></script>
+</head>
+<body>
+<p id="ban">
+BreweryDB API How-To
+</p>
+
+<ul id="nav">
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/index.html">Home</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/SetUp.html">Set Up</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/API.html">API Explanation</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/key.html">Getting Your API key</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/requests.html">Making Requests</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/CORS.html">CORS Workaround</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/reqInfo.html">Using Returned Info</a></li>
+	<li><a href="file:///C:/Users/Joe/Desktop/Temp%20Loc/fun/website/final.html">Final Test</a></li>
+</ul>
+
+	<div class="head">
+		<h1 class="para">Putting everything together!</h1>
+		<p id="intro" class="para">
+			  Lets get that other data we wanted! Let's begin with the beer label. It should be easy to find. Theres a grouping
+			  called labels in data, and contained within that is the link to three images, named icon, medium, and large. So
+			  Let's get the medium size one and display it. First in our html document we add something like this:
+
+		</p>
+		<pre class="prettyprint">
+			<xmp><img id=beerImg><img></xmp>
+		</pre>
+	</div>
+	
+	<div class="col">
+		<h3 class="para"></h3>
+		<p class="para">
+			Now that we have that, we can set a source for it in our JavaScript! We can add something like this to our code that
+			determines what we do with the search request data:
+		</p>
+		<pre class="prettyprint">
+			document.getElementById("beerImg").src = response.data[0].labels.medium;
+		</pre>
+		
+		<p class="para">
+			This gets the image url from the response and stores it as the source, so now the proper label will show up in that location!
+			You can do the same with the brewery logo ID, but this one will have to be added after the second request, since we don't get
+			any brewery info until then. What we finally want to get is the address of the brewery. There's a number of parts to the address
+			that we can see from the results. The street address, city, state, and zipcode are all different items, so let's create a variable
+			for each of those and combine them into a full address. I've picked locations[0] here since that is generally the main brewery.
+		</p>
+		<pre class="prettyprint">
+			var street = response2.data.breweries[0].locations[0].streetAddress;
+			var city = response2.data.breweries[0].locations[0].locality;
+			var state = response2.data.breweries[0].locations[0].region;
+			var zip = response2.data.breweries[0].locations[0].postalCode;
+			var fullAddr = street + ', ' + city + ', ' + state + ' ' + zip;
+			document.getElementById("loc").textContent = fullAddr;
+
+		</pre>
+		
+		<p class="para">
+			So now we have a nice, readable address, as well as the images that we wanted! You could then take all of this information to get 
+			even more than that! Now, there is a way to add brewery info to your results in the first search, but I left it out for demonstration
+			purposes. Also, be mindful of how many nested requests you make. You may run out of your 400 daily requests quicker than you'd like, not
+			to mention it might make for a sluggish experience because the wait times will add up quickly! With what you've learned 
+			here, you should be able to get all of the info you could want about beers and breweries! You can try out the above example below, try searching
+			"Two Hearted Ale" or any beer of your choice!
+		</p>
+		
+		
+		<h3>Search For a beer</h3>
+		<p>
+			Enter the name of a beer:
+		</p>
+		<form method="post">
+			<fieldset>
+				<label for="br">Beer: </label>
+				<input type = "text" name="br" id="br">
+				<input type = "submit" name="submit_beer" id="beerSub">
+			</fieldset>
+		</form>
+		<ul>
+			<li><span>Beer Searched: </span><span id="sb"></span></li>
+			<li><img id=beerImg><img></li>
+			<li><span>Beer ID: </span><span id="id"></span></li>
+			<li><span>Brewery: </span><span id="brew"></span></li>
+			<li><span>Location: </span><span id="loc"></span></li>
+			<li><img id=brewImg><img></li>
+
+		</ul>
+		<p>Beer with similar names:</p>
+		<ul>
+			<li><span>Try: </span><span id="try1"></span></li>
+			<li><span>Try: </span><span id="try2"></span></li>
+		</ul>
+		
+		
+	</div>	
+	<button type="button" class="btn">Next</button>
+	
+</body>
+</html>

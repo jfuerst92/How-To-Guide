@@ -1,0 +1,88 @@
+body {
+	background-color: beige;
+	font-family: "Arial", Sans-Serif;
+}
+
+
+
+#nav li {
+	float: left; }
+  
+#nav {
+	width: 100%;
+	float: left;
+	margin: 0 0 3em 0;
+	padding: 0;
+	list-style: none;
+	background-color: beige;
+	border-bottom: 1px solid #990000; 
+	border-top: 1px solid #990000; }
+  
+#nav li a {
+		display: block;
+		padding: 10px 30px;
+		text-decoration: none;
+		font-weight: bold;
+		color: #990000;
+		border-right: 1px solid #ccc; }
+#ban {
+	font-family: "Lucida Console", Sans-Serif;
+	font-style: bold;
+	font-size: 70px;
+	background-color: beige;
+	color: #990000;}		
+
+.btn {
+  background: red;
+  background-image: -webkit-linear-gradient(top, red, #990000);
+  background-image: -moz-linear-gradient(top, red, #990000);
+  background-image: -ms-linear-gradient(top, red, #990000);
+  background-image: -o-linear-gradient(top, red, #990000);
+  background-image: linear-gradient(to bottom, red, #990000);
+  -webkit-border-radius: 9;
+  -moz-border-radius: 9;
+  border-radius: 9px;
+  text-shadow: 1px 1px 3px #666666;
+  -webkit-box-shadow: 0px 1px 1px #666666;
+  -moz-box-shadow: 0px 1px 1px #666666;
+  box-shadow: 0px 1px 1px #666666;
+  font-family: Arial;
+  color: #faf7fa;
+  font-size: 26px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.btn:hover {
+  background: #ff1717;
+  background-image: -webkit-linear-gradient(top, #ff1717, #b35858);
+  background-image: -moz-linear-gradient(top, #ff1717, #b35858);
+  background-image: -ms-linear-gradient(top, #ff1717, #b35858);
+  background-image: -o-linear-gradient(top, #ff1717, #b35858);
+  background-image: linear-gradient(to bottom, #ff1717, #b35858);
+  text-decoration: none;
+}
+
+.pic {
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.para {
+	 margin-left: auto;
+    margin-right: auto;
+    width: 60em;
+	font-size: 20px;
+}
+
+.prettyprint {
+	background-color: #a6a6a6;
+	font-size: 20px;
+	 margin-left: auto;
+    margin-right: auto;
+    width: 60em;
+}
