@@ -4,17 +4,6 @@
  * 5/8/2016
  ******************/
 
-
-/******************************************
-$(document).ready(function(){
-    $("button").click(function(){
-        $.get("http://api.brewerydb.com/v2/search?q=Two_Hearted_Ale&type=beer&key=d9e3c76540e2267dd4f9e09ede879957&format=xml", function(data, status){
-            alert("Data: " + data + "\nStatus: " + status);
-        });
-    });
-});
-********************************************/
-
 var base = "http://api.brewerydb.com/v2"
 //var base = "http://jfuerst92.github.io/How-To-Guide/proxy.php"
 //var type = "%26type%3dbeer";
@@ -32,7 +21,6 @@ function bind(){
         var key = "&key=d9e3c76540e2267dd4f9e09ede879957";
         var search = "/search?q=";
         var beer = /beer/;
-        var id;
         var brew = "?withBreweries=y"
         var fullUrl = base + search + bts + type + key; //construct a custom url based on the user's input
         var req = new XMLHttpRequest(); //create the request with the new url
@@ -40,24 +28,25 @@ function bind(){
         //req.setRequestHeader("Access-Control-Allow-Origin", "*");
         //req.setRequestHeader('Access-Control-Allow-Methods', 'GET');
         req.send(null);
-       req.addEventListener('load', function(){
+        req.addEventListener('load', function(){
            //console.log("Request Recieved" + req.responseText);
             var response = JSON.parse(req.responseText); //parse the response text
             document.getElementById("sb").textContent = response.data[0].name;          //output the relevant data
             document.getElementById("id").textContent = response.data[0].id;
-            id = response.data[0].id;
+            var id = response.data[0].id;
             document.getElementById("try1").textContent = response.data[1].name;
             document.getElementById("try2").textContent = response.data[2].name;
-            fullUrl = base + beer + id + brew + key
+            
             
         });
+        var newUrl = base + beer + id + brew + key
         var req2 = new XMLHttpRequest();
         req2.open("GET", fullUrl, true);
         req2.send(null);
         req2.addEventListener('load', function(){
            //console.log("Request Recieved" + req.responseText);
             var response2 = JSON.parse(req2.responseText); //parse the response tex
-            console.log(response2)
+            console.log(response2);
             document.getElementById("brew").textContent = response2.data.name; //output the relevant data
            
             
