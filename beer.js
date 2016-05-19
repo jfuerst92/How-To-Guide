@@ -45,12 +45,12 @@ function bind(){
                 var response2 = JSON.parse(req2.responseText); //parse the response tex
                 console.log(response2);
                 document.getElementById("brew").textContent = response2.data.breweries[0].name; 
-                //var street = response2.data.breweries[0].locations[0].streetAddress;
-                //var city = response2.data.breweries[0].locations[0]locality;
-                //var state = response2.data.breweries[0].locations[0].region;
-                //var zip = response2.data.breweries[0].locations[0].postalCode;
-                //var fullAddr = street + ', ' + city + ', ' + state + ' ' + zip;
-                //document.getElementById("loc").textContent = fullAddr;
+                var street = response2.data.breweries[0].locations[0].streetAddress;
+                var city = response2.data.breweries[0].locations[0].locality;
+                var state = response2.data.breweries[0].locations[0].region;
+                var zip = response2.data.breweries[0].locations[0].postalCode;
+                var fullAddr = street + ', ' + city + ', ' + state + ' ' + zip;
+                document.getElementById("loc").textContent = fullAddr;
             
         });
             
