@@ -30,7 +30,7 @@ function bind(){
            //console.log("Request Recieved" + req.responseText);
             var response = JSON.parse(req.responseText); //parse the response text
             document.getElementById("sb").textContent = response.data[0].name;
-            document.getElementById("beerImg").src = response.data[0].labels.large;
+            document.getElementById("beerImg").src = response.data[0].labels.medium;
             document.getElementById("id").textContent = response.data[0].id;
             document.getElementById("try1").textContent = response.data[1].name;
             document.getElementById("try2").textContent = response.data[2].name;
@@ -44,8 +44,13 @@ function bind(){
             req2.addEventListener('load', function(){
                 var response2 = JSON.parse(req2.responseText); //parse the response tex
                 console.log(response2);
-                document.getElementById("brew").textContent = response2.data.breweries[0].name; //output the relevant data
-           
+                document.getElementById("brew").textContent = response2.data.breweries[0].name; 
+                var street = response2.data.breweries[0].streetAddress;
+                var city = response2.data.breweries[0].locality;
+                var state = response2.data.breweries[0].region;
+                var zip = response2.data.breweries[0].postalCode;
+                fullAddr = steet + ', ' + city + ', ' state + ' ' + zipcode;
+                document.getElementById("loc").textContent = fullAddr;
             
         });
             
