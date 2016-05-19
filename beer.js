@@ -38,7 +38,7 @@ function bind(){
             document.getElementById("try2").textContent = response.data[2].name;
             var newUrl = base + beer + id + brew + key
             var req2 = new XMLHttpRequest();
-            req2.open("GET", fullUrl, true);
+            req2.open("GET", newUrl, true);
             req2.send(null);
             req2.addEventListener('load', function(){
                 var response2 = JSON.parse(req2.responseText); //parse the response tex
