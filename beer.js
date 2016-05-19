@@ -43,7 +43,6 @@ function bind(){
        req.addEventListener('load', function(){
            //console.log("Request Recieved" + req.responseText);
             var response = JSON.parse(req.responseText); //parse the response text
-            console.log(response);
             document.getElementById("sb").textContent = response.data[0].name;          //output the relevant data
             document.getElementById("id").textContent = response.data[0].id;
             id = response.data[0].id;
@@ -59,6 +58,7 @@ function bind(){
         req.addEventListener('load', function(){
            //console.log("Request Recieved" + req.responseText);
             var response = JSON.parse(req.responseText); //parse the response tex
+            console.log(response)
             document.getElementById("brew").textContent = response.data.breweries[0].name; //output the relevant data
            
             
@@ -67,32 +67,4 @@ function bind(){
         event.preventDefault();
     });
 }
-    /*var el2 = document.getElementById('zipSub')
-     el2.addEventListener('click', function(event){
-     var text = {zipcode:null, cc:null}
-     var appid = "&appid=fa7d80c48643dfadde2cced1b1be6ca1"
-     text.zipcode = document.getElementById('zip').value; //store zip entered in text
-     text.cc = document.getElementById('cc').value; //store country entered into text
-     var zipUrl = url + "zip=" + text.zipcode + ',' + text.cc + appid; //construct new URL
-     var req = new XMLHttpRequest(); //make new request
-     req.open("GET", zipUrl, true)
-     req.addEventListener('load', function(){
-     if (req.status < 400)
-     {
-     var response = JSON.parse(req.responseText);
-     document.getElementById("curCity").textContent = response.name;  //display selected returned values
-     document.getElementById("tmp").textContent = response.main.temp +"K";
-     document.getElementById("hmd").textContent = response.main.humidity+"%";
-
-     }
-     else
-     {
-     console.log("Error: "+request.statusText);
-     }
-     });
-     req.send(null);
-     //console.log(JSON.parse(req.responseText));
-     event.preventDefault();
-     });*/
-
-//}
+    
