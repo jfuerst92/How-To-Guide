@@ -29,7 +29,8 @@ function bind(){
         req.addEventListener('load', function(){
            //console.log("Request Recieved" + req.responseText);
             var response = JSON.parse(req.responseText); //parse the response text
-            document.getElementById("sb").textContent = response.data[0].name;          //output the relevant data
+            document.getElementById("sb").textContent = response.data[0].name;
+            document.getElementById("beerIMG").src = response.data[0].labels.large;
             document.getElementById("id").textContent = response.data[0].id;
             document.getElementById("try1").textContent = response.data[1].name;
             document.getElementById("try2").textContent = response.data[2].name;
