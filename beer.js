@@ -59,7 +59,7 @@ function bind(){
         req.addEventListener('load', function(){
            //console.log("Request Recieved" + req.responseText);
             var response = JSON.parse(req.responseText); //parse the response tex
-            document.getElementById("brew").textContent = response.data.breweries[1].name; //output the relevant data
+            document.getElementById("brew").textContent = response.data.breweries[0].name; //output the relevant data
            
             
         });
