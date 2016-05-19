@@ -36,21 +36,20 @@ function bind(){
             var id = response.data[0].id;
             document.getElementById("try1").textContent = response.data[1].name;
             document.getElementById("try2").textContent = response.data[2].name;
-            
-            
-        });
-        var newUrl = base + beer + id + brew + key
-        var req2 = new XMLHttpRequest();
-        req2.open("GET", fullUrl, true);
-        req2.send(null);
-        req2.addEventListener('load', function(){
-           //console.log("Request Recieved" + req.responseText);
-            var response2 = JSON.parse(req2.responseText); //parse the response tex
-            console.log(response2);
-            document.getElementById("brew").textContent = response2.data.name; //output the relevant data
+            var newUrl = base + beer + id + brew + key
+            var req2 = new XMLHttpRequest();
+            req2.open("GET", fullUrl, true);
+            req2.send(null);
+            req2.addEventListener('load', function(){
+                var response2 = JSON.parse(req2.responseText); //parse the response tex
+                console.log(response2);
+                document.getElementById("brew").textContent = response2.data.name; //output the relevant data
            
             
         });
+            
+        });
+       
         //console.log(JSON.parse(req.responseText));
         event.preventDefault();
     });
