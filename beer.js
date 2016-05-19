@@ -51,15 +51,14 @@ function bind(){
             fullUrl = base + beer + id + brew + key
             
         });
-        req.open("GET", fullUrl, true);
-        //req.setRequestHeader("Access-Control-Allow-Origin", "*");
-        //req.setRequestHeader('Access-Control-Allow-Methods', 'GET');
-        req.send(null);
-        req.addEventListener('load', function(){
+        var req2 = new XMLHttpRequest();
+        req2.open("GET", fullUrl, true);
+        req2.send(null);
+        req2.addEventListener('load', function(){
            //console.log("Request Recieved" + req.responseText);
-            var response = JSON.parse(req.responseText); //parse the response tex
-            console.log(response)
-            document.getElementById("brew").textContent = response.data.breweries[0].name; //output the relevant data
+            var response2 = JSON.parse(req2.responseText); //parse the response tex
+            console.log(response2)
+            document.getElementById("brew").textContent = response2.data.breweries[0].name; //output the relevant data
            
             
         });
